@@ -1,0 +1,115 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f6f9;
+    margin: 0;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Cards */
+.card {
+    background: white;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Flex row */
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Inputs */
+input, select, button {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: #007bff;
+    color: white;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Buttons */
+.edit {
+    background: orange;
+    padding: 5px 10px;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.delete {
+    background: red;
+    padding: 5px 10px;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+/* Summary */
+.summary {
+    display: flex;
+    justify-content: space-around;
+}
+
+.box {
+    background: #007bff;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    width: 20%;
+    text-align: center;
+}
+
+/* Alerts */
+.alert {
+    padding: 10px;
+    margin: 10px;
+    color: white;
+    border-radius: 5px;
+    animation: fadeOut 5s forwards;
+}
+
+.success { background: green; }
+.error { background: red; }
+
+@keyframes fadeOut {
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}

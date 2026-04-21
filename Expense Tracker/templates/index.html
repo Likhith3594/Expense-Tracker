@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>💰 Expense Tracker</h1>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+        <div class="alert {{ category }}">{{ message }}</div>
+    {% endfor %}
+    {% endwith %}
+
+    <!-- Add Expense Card -->
+    <div class="card">
+        <h3>Add Expense</h3>
+        <form action="/add" method="POST">
+            <input type="text" name="title" placeholder="Title" required>
+            <input type="number" name="amount" placeholder="Amount" required>
+
+            <select name="category">
+                <option>Food</option>
+                <option>Transport</option>
+                <option>Bills</option>
+                <option>Entertainment</option>
+            </select>
+
+            <input type="date" name="date" required>
+            <button>Add</button>
+        </form>
+    </div>
+
+    <!-- Search & Filter -->
+    <div class="card flex">
+        <form action="/search" method="POST">
+            <input type="text" name="keyword" placeholder="Search...">
+            <button>Search</button>
+        </form>
+
+        <form action="/filter" method="POST">
+            <select name="category">
+                <option>Food</option>
+                <option>Transport</option>
+                <option>Bills</option>
+                <option>Entertainment</option>
+            </select>
+            <button>Filter</button>
+        </form>
+    </div>
+
+    <!-- Summary -->
+    <div class="summary">
+        <div class="box">💵 Total <br> ₹{{ total }}</div>
+        <div class="box">📊 Average <br> ₹{{ avg }}</div>
+        {% if highest %}
+        <div class="box">📈 Highest <br> ₹{{ highest[2] }}</div>
+        {% endif %}
+        {% if lowest %}
+        <div class="box">📉 Lowest <br> ₹{{ lowest[2] }}</div>
+        {% endif %}
+    </div>
+
+    <!-- Table -->
+    <div class="card">
+        <table>
+            <tr>
+                <th>ID</th><th>Title</th><th>Amount</th>
+                <th>Category</th><th>Date</th><th>Action</th>
+            </tr>
+
+            {% for row in data %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>₹{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>
+                    <a class="edit" href="/edit/{{ row[0] }}">Edit</a>
+                    <a class="delete" href="/delete/{{ row[0] }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>
